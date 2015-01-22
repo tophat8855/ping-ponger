@@ -1,9 +1,15 @@
 var player1Wins = 0;
 var player2Wins = 0;
+var score1Node;
+var score2Node;
+var tracker1;
+var tracker2;
 
 function init(containerNode) {
-  var score1Node = createScore('score1');
-  var score2Node = createScore('score2');
+  score1Node = createScore('score1');
+  score2Node = createScore('score2');
+  tracker1 = createTracker('player1');
+  tracker2 = createTracker('player2');
   var winner = document.createElement("p");
   winner.innerText = "";
   winner.id = "winner";
@@ -15,17 +21,21 @@ function init(containerNode) {
   containerNode.appendChild(createButton('player1', 'Add to player 1 score', score1Node));
   containerNode.appendChild(createButton('player2', 'Add to player 2 score', score2Node));
 
-  containerNode.appendChild(createTracker('player1'));
-  containerNode.appendChild(createTracker('player2'));
+  containerNode.appendChild(tracker1);
+  containerNode.appendChild(tracker2);
 }
 
 function winnerChecker(nodeText, id) {
   if (nodeText === "11") {
     if(id === 'player1') {
       player1Wins++;
+      tracker1.innerText = id + ": " + player1Wins;
     } else {
       player2Wins++;
+      tracker2.innerText = id + ": " + player2Wins;
     }
+    score1Node.innerText = 0;
+    score2Node.innerText = 0;
     return (id + " wins!");
   }
 }

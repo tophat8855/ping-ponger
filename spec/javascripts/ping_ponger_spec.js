@@ -7,6 +7,8 @@ describe('ping ponger', function() {
   afterEach(function() {
     var container = document.querySelector("#jasmine_content");
     container.innerHTML = "";
+    player1Wins = 0;
+    player2Wins = 0;
   });
 
   it('increments the score when the button is clicked', function() {
@@ -41,7 +43,7 @@ describe('ping ponger', function() {
       buttonNode2.click();
     }
 
-    expect(scoreNode2.innerText).toEqual('11');
+    expect(scoreNode2.innerText).toEqual('0');
     expect(announceWinner.innerText).toEqual('player2 wins!');
   });
 
