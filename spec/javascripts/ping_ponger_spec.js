@@ -30,5 +30,36 @@ describe('ping ponger', function() {
     buttonNode2.click();
 
     expect(scoreNode2.innerText).toEqual('1');
-  })
+  });
+
+  it('announces winner when score of 11 is reached', function() {
+    var scoreNode2 = document.querySelector('#score2');
+    var buttonNode2 = document.querySelector('#player2');
+    var announceWinner = document.querySelector('#winner');
+
+    for (var i = 0; i < 11; i++) {
+      buttonNode2.click();
+    }
+
+    expect(scoreNode2.innerText).toEqual('11');
+    expect(announceWinner.innerText).toEqual('player2 wins!');
+  });
+
+  it('keeps track of game wins for each player', function() {
+    var buttonNode2 = document.querySelector('#player2');
+    var buttonNode1 = document.querySelector('#player1');
+    var winnerTracker1 = document.querySelector('#player1Tracker');
+    var winnerTracker2 = document.querySelector('#player2Tracker');
+
+    for (var i = 0; i < 11; i++) {
+      buttonNode2.click();
+    }
+
+    for (var j = 0; j < 11; j++) {
+      buttonNode1.click();
+    }
+
+    expect(winnerTracker1.innerText).toEqual('player1: 1');
+    expect(winnerTracker2.innerText).toEqual('player2: 1');
+  });
 });
